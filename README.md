@@ -1,18 +1,22 @@
-# the-little-shop
-Un site web de e-commerce construit a partir du Tutoriel de Chad Darby de https://luv2code.com/.
+The Little Shop - Site Web de E-commerce
 
-#Base de donnees
-MySQL
+The Little Shop est un site web de e-commerce construit à partir du tutoriel de Chad Darby de luv2code.com. Il permet aux utilisateurs de parcourir, rechercher et acheter divers produits en ligne.
+Technologies Utilisées
 
-#Back-end
-SpringBoot
+    Base de données : MySQL
+    Back-end : SpringBoot
+    Front-end : Angular
+    Authentification : Okta
+    Paiement : API Stripe
 
-#Front-end
-Angular
+Prérequis
 
-#Authentification
-Okta
+Avant de démarrer le projet, assurez-vous d'avoir installé les éléments suivants sur votre système :
 
-#Paiement
-API Stripe
+    MySQL : Téléchargement
+    Node.js : Téléchargement
+    Angular CLI : Vous pouvez l'installer via la commande npm install -g @angular/cli
+    JDK (Java Development Kit) : Téléchargement
+    Okta Developer Account : Inscription
+    Compte Stripe : Inscription - Mode TEST
 
