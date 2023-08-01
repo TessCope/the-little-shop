@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "8e703731-8c74-4a22-a984-b52b5a077f63",
+		"name": "The Little Shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26664594"
+	},
+	"item": [
+		{
+			"name": "Repos disponibles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate the _links object is present in the response\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData._links).to.exist;",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate the presence and non-empty 'countries' link\", function () {",
+							"    const responseData = pm.response.json();",
+							"",
+							"    pm.expect(responseData._links).to.exist.and.to.be.an('object');",
+							"    pm.expect(responseData._links.countries).to.exist.and.to.be.an('object');",
+							"    pm.expect(responseData._links.countries.href).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate the 'orders' link\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData._links).to.exist.and.to.be.an('object');",
+							"    pm.expect(responseData._links.orders).to.exist.and.to.have.property('href').that.is.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate the 'states' link has a non-empty 'href' value\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData._links).to.exist;",
+							"    pm.expect(responseData._links.states).to.exist;",
+							"    pm.expect(responseData._links.states.href).to.exist.and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiURL}}",
+					"host": [
+						"{{apiURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pour pays module Shipping",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//PARSER\r",
+							"responseBody = pm.response.json();\r",
+							"\r",
+							"// CE QUE J'ATTENDS\r",
+							"const expectedBody = {\r",
+							"  \"id\": 2,\r",
+							"  \"code\": \"CA\",\r",
+							"  \"name\": \"Canada\",\r",
+							"  \"_links\": {\r",
+							"    \"self\": {\r",
+							"      \"href\": \"https://localhost:8443/api/countries/2\"\r",
+							"    },\r",
+							"    \"country\": {\r",
+							"      \"href\": \"https://localhost:8443/api/countries/2\"\r",
+							"    },\r",
+							"    \"states\": {\r",
+							"      \"href\": \"https://localhost:8443/api/countries/2/states\"\r",
+							"    }\r",
+							"  }\r",
+							"};\r",
+							"\r",
+							"//CE QUE JE RECOIS\r",
+							"pm.test('Les reponses matchent.', function () {\r",
+							"  pm.expect(responseBody).to.eql(expectedBody);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiURL}}/countries/2",
+					"host": [
+						"{{apiURL}}"
+					],
+					"path": [
+						"countries",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chercher produit par ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" //PARSER\r",
+							"responseBody = pm.response.json();\r",
+							"\r",
+							"// CE QUE J'ATTENDS\r",
+							"const expectedBody = {\r",
+							"\r",
+							"      \"id\" : 5,\r",
+							"\r",
+							"      \"sku\" : \"BOOK-TECH-1004\",\r",
+							"\r",
+							"      \"name\" : \"Crash Course in Big Data\",\r",
+							"\r",
+							"      \"description\" : \"Learn Big Data at your own pace. The author explains how the technology works in easy-to-understand language. This book includes working examples that you can apply to your own projects. Purchase the book and get started today!\",\r",
+							"\r",
+							"      \"unitPrice\" : 18.99,\r",
+							"\r",
+							"      \"imageUrl\" : \"assets/images/products/books/book-luv2code-1004.png\",\r",
+							"\r",
+							"      \"active\" : true,\r",
+							"\r",
+							"      \"unitsInStock\" : 100,\r",
+							"\r",
+							"      \"dateCreated\" : \"2023-07-01T17:45:53.000+00:00\",\r",
+							"\r",
+							"      \"lastUpdated\" : null,\r",
+							"\r",
+							"      \"_links\" : {\r",
+							"\r",
+							"        \"self\" : {\r",
+							"\r",
+							"          \"href\" : \"https://localhost:8443/api/products/5\"\r",
+							"\r",
+							"        },\r",
+							"\r",
+							"        \"product\" : {\r",
+							"\r",
+							"          \"href\" : \"https://localhost:8443/api/products/5\"\r",
+							"\r",
+							"        },\r",
+							"\r",
+							"        \"category\" : {\r",
+							"\r",
+							"          \"href\" : \"https://localhost:8443/api/products/5/category\"\r",
+							"\r",
+							"        }\r",
+							"\r",
+							"      }\r",
+							"\r",
+							"    }\r",
+							"\r",
+							"//CE QUE JE RECOIS\r",
+							"pm.test('Les reponses matchent.', function () {\r",
+							"  pm.expect(responseBody).to.eql(expectedBody);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiURL}}/products/5",
+					"host": [
+						"{{apiURL}}"
+					],
+					"path": [
+						"products",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categories produit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate the _embedded object\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData).to.be.an('object');",
+							"  pm.expect(responseData._embedded).to.exist.and.to.be.an('object');",
+							"});",
+							"",
+							"",
+							"pm.test(\"The response contains a productCategory array with at least one element\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData._embedded).to.exist.and.to.be.an('object');",
+							"    pm.expect(responseData._embedded.productCategory).to.exist.and.to.be.an('array').and.to.have.lengthOf.at.least(1);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify _links object is present in the response\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData._links).to.exist;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{apiURL}}/product-category",
+					"host": [
+						"{{apiURL}}"
+					],
+					"path": [
+						"product-category"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
