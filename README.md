@@ -1,7 +1,10 @@
 The Little Shop - Site Web de E-commerce
 
 The Little Shop est un site web de e-commerce construit à partir du tutoriel de Chad Darby de luv2code.com. Il permet aux utilisateurs de parcourir, rechercher et acheter divers produits en ligne.
-Technologies Utilisées
+
+Pour lancer le projet, utiliser la commande npm start.
+
+Technologies Utilisées:
 
     Base de données : MySQL
     Back-end : SpringBoot
