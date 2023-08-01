@@ -4,6 +4,9 @@ The Little Shop est un site web de e-commerce construit à partir du tutoriel de
 
 Pour lancer le projet, utiliser la commande npm start.
 
+FRONT-END: https://localhost:4200 
+BACK-END: https://localhost:8443 
+
 Technologies Utilisées:
 
     Base de données : MySQL
@@ -11,6 +14,7 @@ Technologies Utilisées:
     Front-end : Angular
     Authentification : Okta
     Paiement : API Stripe
+
 
 Prérequis
 
