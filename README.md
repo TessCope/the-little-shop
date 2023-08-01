@@ -14,6 +14,7 @@ Technologies Utilisées:
     Front-end : Angular
     Authentification : Okta
     Paiement : API Stripe
+    Tests API: POSTMAN
 
 
 Prérequis
